@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorJump", "ColorJump\ColorJump.csproj", "{E8C20442-61FF-4C42-8DD7-CADE9C4B1518}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8C20442-61FF-4C42-8DD7-CADE9C4B1518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8C20442-61FF-4C42-8DD7-CADE9C4B1518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8C20442-61FF-4C42-8DD7-CADE9C4B1518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8C20442-61FF-4C42-8DD7-CADE9C4B1518}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80CF3304-C8E3-4FE8-B377-D29A568C3701}
+	EndGlobalSection
+EndGlobal
