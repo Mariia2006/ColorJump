@@ -8,13 +8,14 @@ using System.Linq;
 
 public abstract class BaseCanvas : Form // успадкування від форми 
 {
-    protected bool mTrucking; // флаг запущеного ігрового циклу
     protected const int mFrameDelay = 16; // 60 FPS
     protected long tick; // лічильник кадрів
     protected bool muted = false; // флаг вимкнення музики
     protected bool paused = false; // флаг паузи
     protected static SoundPlayer Play_Music_Main; // програвач музики
     private int key = 0; // збереження останньої натиснутої клавіши
+    private const int SleepTime = 40;
+    private bool _isWorking; // флаг запущеного ігрового циклу
 
     protected BaseCanvas(bool suppressKeyEvents, bool gameMusic, bool isMute)
     {
@@ -91,29 +92,32 @@ public abstract class BaseCanvas : Form // успадкування від фо�
 
     public void Start()
     {
-        mTrucking = true;
-        Thread gameThread = new Thread(Run); // запускає ігровий процес в окремому потоці
-        gameThread.Start();
+        _isWorking = true;
+        new Thread(Run).Start();
     }
 
     public void Stop()
     {
-        mTrucking = false; // зупиняє ігровий процес
+        _isWorking = false;
     }
 
     public void Run()
     {
-        while (mTrucking) // коли ігровий процес активний
-        { 
-            Invoke(new Action(() => // щоб безпечно підключити потік гри до основного потоку використовується Invoke()
-            {
-                Invalidate(); // Invalidate() викликає OnPaint(), щоб перемалювати екран.
-            }));
-            Tick(); // виконується кожен кадр
+        while (_isWorking)
+        {
+            Update(SleepTime);
+            Invalidate();
+
+            Thread.Sleep(SleepTime);
         }
     }
 
-    protected virtual void Tick()
+    public virtual void Update(long tick)
+    {
+
+    }
+
+    /* protected virtual void Tick()
     {
         try
         {
@@ -121,7 +125,7 @@ public abstract class BaseCanvas : Form // успадкування від фо�
         }
         catch (ThreadInterruptedException) { }
         tick += mFrameDelay; // час проведений у грі
-    }
+    } */ 
 
     protected virtual void Input(int key) { } // тут він порожній, але в нащадках можна перевизначати
 
